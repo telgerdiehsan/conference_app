@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+<<<<<<< HEAD
     'django.contrib.sites',
     'api',
     'corsheaders',
@@ -44,6 +45,19 @@ INSTALLED_APPS = [
     'rest_framework',     
     'rest_framework.authtoken',
     ]
+=======
+    'api',
+    'corsheaders',
+    'rest_framework',     
+    'rest_framework.authtoken',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.google',
+]
+>>>>>>> 0c84e0fab228f72bae588a93ac18815c1357f0bf
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
