@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'api',
     'corsheaders',
+    'channels',
     'rest_framework',     
     'rest_framework.authtoken',
     ]
@@ -74,6 +75,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'conference_app.wsgi.application'
+ASGI_APPLICATION = 'conference_app.routing.application'
 
 CORS_ORIGIN_ALLOW_ALL = True
 # Database
