@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-<<<<<<< HEAD
     'django.contrib.sites',
     'api',
     'corsheaders',
@@ -45,19 +44,6 @@ INSTALLED_APPS = [
     'rest_framework',     
     'rest_framework.authtoken',
     ]
-=======
-    'api',
-    'corsheaders',
-    'rest_framework',     
-    'rest_framework.authtoken',
-    'django.contrib.sites',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.facebook',
-    'allauth.socialaccount.providers.google',
-]
->>>>>>> 0c84e0fab228f72bae588a93ac18815c1357f0bf
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -90,7 +76,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'conference_app.wsgi.application'
 ASGI_APPLICATION = 'conference_app.routing.application'
-
+# CHANNEL_LAYERS = {
+#     'default': {
+#     'BACKEND': 'channels_redis.core.RedisChannelLayer',
+#     'CONFIG': {
+#         "hosts": [('127.0.0.1', 6379)],
+#         },
+#     },
+# }
+CHANNEL_LAYERS={
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+     }
+}
 CORS_ORIGIN_ALLOW_ALL = True
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
