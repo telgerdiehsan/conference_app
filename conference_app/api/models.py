@@ -11,9 +11,9 @@ class User(models.Model):
 
 class Rooms(models.Model):
     """docstring for Rooms."""
-    room_id=models.IntegerField(primary_key=True,unique=True)
-    link=models.CharField(max_length=264)
-    owner=models.ForeignKey(User,on_delete=models.CASCADE)
+    room_id=models.CharField(max_length=8,unique=True)
+    link=models.CharField(max_length=264,default='no_link')
+    owner=models.ForeignKey(User,on_delete=models.CASCADE,default=0)
 
     class Meta:
         db_table = 'room'
