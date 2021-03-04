@@ -17,37 +17,6 @@ def get_random_string(length):
     result_str = ''.join(random.choice(letters) for i in range(length))
     return result_str
 
-channel_layer = get_channel_layer()
-
-def index(request):
-    channel_name = request.GET['channel_name']
-    print(channel_name)
-    global a 
-    # print(a.channels)
-    # out = async_to_sync(a.group_send)('test_channel',{'type':'snd.msg','text':'HOW YOU DOING?'})
-    async_to_sync(a.send)(channel_name,{'type':'snd.msg','text':'Hello'})
-    out = async_to_sync(get_channel_layer().receive)('test_channel')
-    print(out)
-    # print('-'*20)
-    return HttpResponse("Hello")
-
-
-class JoinRoom(APIView):
-
-    def get(self,request):
-        room_id = request.GET['room_id']
-        data = request.GET['data']
-        print('Before:',channel_layer.channels)
-        async_to_sync(channel_layer.group_send)(room_id,{'type':'send.offer','text':data})
-        print("After:",channel_layer.channels)
-        return HttpResponse(status.HTTP_200_OK)
-
-    def post(self,request):
-        room_id = 'abcd'
-        print(channel_layer.channels)
-        out = async_to_sync(channel_layer.receive)('offer')
-        print(out)
-        return HttpResponse(status.HTTP_200_OK)
 
 class Room(APIView):
 
