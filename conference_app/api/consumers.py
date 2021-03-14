@@ -21,7 +21,7 @@ class JoinRoom(WebsocketConsumer):
         room_id = text_data['room_id']
         offer = text_data['offer']
         async_to_sync(self.channel_layer.group_add)(self.user_id,self.channel_name)
-        async_to_sync(self.channel_layer.group_send)(room_id,{'type':'send.offer','text':offer,'user_id':self.user_id})
+        async_to_sync(self.channel_layer.group_send)(room_id,{'type':'send.offer','text':text_data,'user_id':self.user_id})
         self.send(text_data=json.dumps({'message':'offer sent'}))
     def user_response(self,event):
         self.send(text_data=json.dumps({'message':event['text']}))
@@ -40,9 +40,11 @@ class HostRoom(WebsocketConsumer):
         self.close()
 
     def receive(self,text_data):
-
+        print(text_data)
         text_data = json.loads(text_data)
         print(text_data)
+        print(text_data.keys())
+        print(type(text_data))
         mode = text_data['mode']
         
         if mode == 'start': 
@@ -51,7 +53,7 @@ class HostRoom(WebsocketConsumer):
             self.send(text_data=json.dumps({'message':'Your room has registered'}))
             return
         elif mode == 'offer_response':
-            response = text_data['response']
+            response = text_data['data']
             user_id = text_data['user_id']
             async_to_sync(self.channel_layer.group_send)(user_id,{'type':'user.response','text':response})
 
