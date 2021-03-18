@@ -1,0 +1,8 @@
+channels==3.0.3
+Django==3.1.7
+django-cors-headers==3.7.0
+django-rest-framework==0.1.0
+google-cloud-core==1.6.0
+google-cloud-translate==3.0.2
+protobuf==3.15.6
+psycopg2-binary==2.8.6
